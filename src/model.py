@@ -5,7 +5,15 @@ from sklearn.preprocessing import StandardScaler
 import joblib
 import os
 
-FEATURE_COLUMNS = ['logon_count', 'after_hours_logon_count', 'distinct_pc_count', 'usb_connect_count']
+FEATURE_COLUMNS = [
+    'logon_count_zscore',
+    'after_hours_logon_count_zscore',
+    'distinct_pc_count_zscore',
+    'usb_connect_count_zscore',
+    'file_access_count_zscore',
+    'email_count_zscore',
+    'email_external_count_zscore'
+]
 
 def load_features():
     return pd.read_csv("data/processed/user_daily_features.csv")
@@ -18,14 +26,14 @@ def train_isolation_forest(df):
 
     model = IsolationForest(
         n_estimators=200,
-        contamination=0.005,  # roughly matches our ~0.4% insider rate
-        random_state=42
+        contamination=0.01,
+        random_state=42,
+        n_jobs=1
     )
     model.fit(X_scaled)
 
-    # -1 = anomaly, 1 = normal -> convert to 1 = anomaly, 0 = normal
     df['iso_forest_flag'] = (model.predict(X_scaled) == -1).astype(int)
-    df['iso_forest_score'] = -model.decision_function(X_scaled)  # higher = more anomalous
+    df['iso_forest_score'] = -model.decision_function(X_scaled)
 
     return df, model, scaler
 
@@ -47,6 +55,7 @@ def train_dbscan(df, scaler, sample_size=5000):
     df.loc[sample_idx, 'dbscan_flag'] = (labels == -1).astype(int)
 
     return df
+
 def evaluate(df):
     total_insiders = df['is_insider_day'].sum()
 
@@ -60,6 +69,18 @@ def evaluate(df):
     print(f"\nIsolation Forest total flags: {df['iso_forest_flag'].sum()}")
     print(f"DBSCAN total flags: {df['dbscan_flag'].sum()}")
 
+def evaluate_by_rank(df, top_percentages=[0.01, 0.05, 0.10]):
+    """Check what % of true insider days fall within the top-K% most anomalous scores."""
+    total_insiders = df['is_insider_day'].sum()
+    df_sorted = df.sort_values('iso_forest_score', ascending=False)
+
+    print("\n--- Ranking-Based Evaluation (Isolation Forest) ---")
+    for pct in top_percentages:
+        top_n = int(len(df_sorted) * pct)
+        top_slice = df_sorted.head(top_n)
+        caught = top_slice['is_insider_day'].sum()
+        print(f"Top {pct*100:.0f}% ({top_n} rows): caught {caught}/{total_insiders} insiders ({caught/total_insiders*100:.1f}%)")
+
 if __name__ == "__main__":
     print("Loading features...")
     df = load_features()
@@ -72,6 +93,7 @@ if __name__ == "__main__":
 
     print("Evaluating...")
     evaluate(df)
+    evaluate_by_rank(df)
 
     os.makedirs("models", exist_ok=True)
     joblib.dump(iso_model, "models/isolation_forest.pkl")

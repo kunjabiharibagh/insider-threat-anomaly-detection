@@ -75,14 +75,6 @@ def engineer_email_features(chunksize=300000, company_domain="dtaa.com"):
 
     return final
 
-def add_baseline_deviation_features(df, feature_cols):
-    """For each feature, add a column showing how many std devs today's value is from the user's own mean."""
-    for col in feature_cols:
-        user_mean = df.groupby('user')[col].transform('mean')
-        user_std = df.groupby('user')[col].transform('std').replace(0, 1)  # avoid divide-by-zero
-        df[f'{col}_zscore'] = (df[col] - user_mean) / user_std
-    return df
-
 def label_insider_days(features_df, insiders_df):
     insiders_r42 = insiders_df[insiders_df['dataset'] == 4.2].copy()
     insiders_r42['start'] = pd.to_datetime(insiders_r42['start'])
@@ -100,6 +92,20 @@ def label_insider_days(features_df, insiders_df):
         features_df.loc[mask, 'is_insider_day'] = 1
 
     return features_df
+
+def add_baseline_deviation_features(df, feature_cols, insider_col='is_insider_day'):
+    """Baseline uses only non-insider days, so malicious activity doesn't skew a user's own normal profile."""
+    normal_days = df[df[insider_col] == 0]
+
+    user_mean = normal_days.groupby('user')[feature_cols].mean()
+    user_std = normal_days.groupby('user')[feature_cols].std().replace(0, 1).fillna(1)
+
+    for col in feature_cols:
+        mean_map = df['user'].map(user_mean[col])
+        std_map = df['user'].map(user_std[col]).fillna(1)
+        df[f'{col}_zscore'] = (df[col] - mean_map) / std_map
+
+    return df
 
 def build_feature_table():
     print("Loading raw data...")
@@ -128,13 +134,13 @@ def build_feature_table():
     for col in fill_cols:
         features[col] = features[col].fillna(0)
 
+    print("Labeling insider days...")
+    features = label_insider_days(features, insiders_df)
+
     print("Adding per-user baseline deviation features...")
     base_cols = ['logon_count', 'after_hours_logon_count', 'distinct_pc_count',
                  'usb_connect_count', 'file_access_count', 'email_count', 'email_external_count']
     features = add_baseline_deviation_features(features, base_cols)
-
-    print("Labeling insider days...")
-    features = label_insider_days(features, insiders_df)
 
     return features
 
