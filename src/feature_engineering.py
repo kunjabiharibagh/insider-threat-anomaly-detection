@@ -1,6 +1,8 @@
 import pandas as pd
 from data_preprocessing import load_logon_data, load_device_data, load_insiders_answer
 
+RAW_DATA_PATH = "data/raw/r4.2"
+
 def engineer_logon_features(logon_df):
     logon_df['date'] = pd.to_datetime(logon_df['date'])
     logon_df['day'] = logon_df['date'].dt.date
@@ -29,8 +31,59 @@ def engineer_device_features(device_df):
 
     return grouped
 
+def engineer_file_features():
+    print("Loading file.csv...")
+    df = pd.read_csv(f"{RAW_DATA_PATH}/file.csv", usecols=['id', 'date', 'user'])
+    df['date'] = pd.to_datetime(df['date'])
+    df['day'] = df['date'].dt.date
+
+    grouped = df.groupby(['user', 'day']).agg(
+        file_access_count=('id', 'count')
+    ).reset_index()
+
+    return grouped
+
+def engineer_email_features(chunksize=300000, company_domain="dtaa.com"):
+    print("Loading email.csv in chunks (this may take a few minutes)...")
+    cols = ['id', 'date', 'user', 'to', 'cc', 'bcc']
+    chunks = []
+
+    for chunk in pd.read_csv(f"{RAW_DATA_PATH}/email.csv", usecols=cols, chunksize=chunksize):
+        chunk['date'] = pd.to_datetime(chunk['date'])
+        chunk['day'] = chunk['date'].dt.date
+
+        def count_external(row):
+            recipients = str(row['to']) + ';' + str(row['cc']) + ';' + str(row['bcc'])
+            addresses = [a.strip() for a in recipients.split(';') if a.strip() and a.strip() != 'nan']
+            return sum(1 for a in addresses if company_domain not in a)
+
+        chunk['external_count'] = chunk.apply(count_external, axis=1)
+        chunk['is_external'] = (chunk['external_count'] > 0).astype(int)
+
+        grouped = chunk.groupby(['user', 'day']).agg(
+            email_count=('id', 'count'),
+            email_external_count=('is_external', 'sum')
+        ).reset_index()
+
+        chunks.append(grouped)
+
+    combined = pd.concat(chunks, ignore_index=True)
+    final = combined.groupby(['user', 'day']).agg(
+        email_count=('email_count', 'sum'),
+        email_external_count=('email_external_count', 'sum')
+    ).reset_index()
+
+    return final
+
+def add_baseline_deviation_features(df, feature_cols):
+    """For each feature, add a column showing how many std devs today's value is from the user's own mean."""
+    for col in feature_cols:
+        user_mean = df.groupby('user')[col].transform('mean')
+        user_std = df.groupby('user')[col].transform('std').replace(0, 1)  # avoid divide-by-zero
+        df[f'{col}_zscore'] = (df[col] - user_mean) / user_std
+    return df
+
 def label_insider_days(features_df, insiders_df):
-    """Mark rows where the user was a known insider AND the day falls in their attack window."""
     insiders_r42 = insiders_df[insiders_df['dataset'] == 4.2].copy()
     insiders_r42['start'] = pd.to_datetime(insiders_r42['start'])
     insiders_r42['end'] = pd.to_datetime(insiders_r42['end'])
@@ -60,9 +113,25 @@ def build_feature_table():
     print("Engineering device features...")
     device_features = engineer_device_features(device_df)
 
-    print("Merging features...")
-    features = pd.merge(logon_features, device_features, on=['user', 'day'], how='left')
-    features['usb_connect_count'] = features['usb_connect_count'].fillna(0)
+    print("Engineering file features...")
+    file_features = engineer_file_features()
+
+    print("Engineering email features...")
+    email_features = engineer_email_features()
+
+    print("Merging all features...")
+    features = logon_features.merge(device_features, on=['user', 'day'], how='left')
+    features = features.merge(file_features, on=['user', 'day'], how='left')
+    features = features.merge(email_features, on=['user', 'day'], how='left')
+
+    fill_cols = ['usb_connect_count', 'file_access_count', 'email_count', 'email_external_count']
+    for col in fill_cols:
+        features[col] = features[col].fillna(0)
+
+    print("Adding per-user baseline deviation features...")
+    base_cols = ['logon_count', 'after_hours_logon_count', 'distinct_pc_count',
+                 'usb_connect_count', 'file_access_count', 'email_count', 'email_external_count']
+    features = add_baseline_deviation_features(features, base_cols)
 
     print("Labeling insider days...")
     features = label_insider_days(features, insiders_df)
@@ -72,8 +141,8 @@ def build_feature_table():
 if __name__ == "__main__":
     features_df = build_feature_table()
     print(f"\nFeature table shape: {features_df.shape}")
+    print(features_df.columns.tolist())
     print(features_df.head(10))
-
     print(f"\nTotal insider-labeled rows: {features_df['is_insider_day'].sum()}")
 
     features_df.to_csv("data/processed/user_daily_features.csv", index=False)
