@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 1150" fill="none">
+  <defs>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22D3EE"/>
+      <stop offset="1" stop-color="#2563EB"/>
+    </linearGradient>
+    <linearGradient id="purple" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#A855F7"/>
+      <stop offset="1" stop-color="#4C1D95"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0EA5E9"/>
+      <stop offset="1" stop-color="#312E81"/>
+    </linearGradient>
+    <radialGradient id="glow">
+      <stop offset="0" stop-color="#22D3EE" stop-opacity=".95"/>
+      <stop offset=".45" stop-color="#3B82F6" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#3B82F6" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+    <filter id="smallGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+  </defs>
+
+  <!-- soft transparent background glow -->
+  <ellipse cx="450" cy="300" rx="300" ry="270" fill="url(#glow)" opacity=".65" filter="url(#softGlow)"/>
+
+  <!-- floating arrows -->
+  <g fill="url(#blue)">
+    <path d="M170 250h25v-42l38 38-38 38v-34h-25z"/>
+    <path d="M1050 300h25v-42l38 38-38 38v-34h-25z"/>
+    <path d="M110 650h28v-55l48 48-48 48v-41h-28z"/>
+    <path d="M970 900h25v-45l40 41-40 41v-37h-25z"/>
+  </g>
+
+  <!-- floating security icons -->
+  <g stroke="#22D3EE" stroke-width="6" opacity=".95">
+    <circle cx="1060" cy="150" r="31"/>
+    <rect x="1049" y="146" width="22" height="20" rx="4"/>
+    <path d="M1053 146v-8a7 7 0 0 1 14 0v8"/>
+    <circle cx="135" cy="530" r="30"/>
+    <path d="M135 508l18 7v13c0 15-9 24-18 29-9-5-18-14-18-29v-13z"/>
+    <path d="m128 530 6 6 11-12"/>
+  </g>
+
+  <!-- floating dollar/data symbols -->
+  <g fill="#22D3EE" font-family="Arial, sans-serif" font-size="58" font-weight="700">
+    <text x="275" y="360">$</text>
+    <text x="1080" y="350">$</text>
+    <text x="650" y="980">$</text>
+    <text x="535" y="235">$</text>
+  </g>
+
+  <!-- lightbulb glow -->
+  <circle cx="405" cy="300" r="175" fill="url(#glow)" filter="url(#softGlow)"/>
+
+  <!-- bulb -->
+  <g>
+    <path d="M325 300c0-66 42-112 82-112s82 46 82 112c0 39-17 62-35 83-13 15-18 30-18 48h-58c0-18-5-33-18-48-18-21-35-44-35-83z"
+          fill="#67E8F9" fill-opacity=".28" stroke="#67E8F9" stroke-width="9"/>
+    <path d="M350 305c0-42 25-73 57-73 32 0 57 31 57 73" stroke="#E0F2FE" stroke-width="6" stroke-linecap="round"/>
+    <path d="M373 370c13 14 29 21 34 21s21-7 34-21" stroke="#E0F2FE" stroke-width="6"/>
+    <path d="M374 415h66v28h-66z" fill="url(#blue)" stroke="#22D3EE" stroke-width="6"/>
+    <path d="M368 443h78v22c-12 15-22 21-39 21s-27-6-39-21z" fill="url(#purple)"/>
+    <path d="M385 281c13 17 20 28 20 48M425 281c-13 17-20 28-20 48" stroke="#F8FAFC" stroke-width="5" stroke-linecap="round"/>
+  </g>
+
+  <!-- holographic light column -->
+  <path d="M355 485h100l40 375H315z" fill="url(#blue)" opacity=".20" stroke="#22D3EE" stroke-width="4"/>
+  <ellipse cx="405" cy="860" rx="100" ry="30" fill="#22D3EE" opacity=".35" filter="url(#smallGlow)"/>
+  <ellipse cx="405" cy="860" rx="105" ry="32" fill="url(#purple)" stroke="#22D3EE" stroke-width="6"/>
+  <ellipse cx="405" cy="848" rx="78" ry="20" fill="#67E8F9" opacity=".75"/>
+
+  <!-- laptop -->
+  <g>
+    <!-- screen -->
+    <path d="M565 260Q565 230 595 230h500q30 0 30 30v365H565z" fill="url(#screen)" stroke="#7C3AED" stroke-width="8"/>
+    <path d="M600 285h455v315H600z" fill="#0B1230" stroke="#38BDF8" stroke-width="3"/>
+    <!-- UI panels -->
+    <rect x="625" y="315" width="165" height="95" rx="10" fill="#312E81" stroke="#A855F7" stroke-width="3"/>
+    <rect x="815" y="315" width="210" height="95" rx="10" fill="#1E3A8A"/>
+    <rect x="625" y="435" width="205" height="125" rx="10" fill="#172554"/>
+    <rect x="850" y="435" width="175" height="125" rx="10" fill="#312E81"/>
+    <g fill="#67E8F9">
+      <rect x="650" y="340" width="100" height="8" rx="4"/>
+      <rect x="650" y="360" width="125" height="7" rx="3"/>
+      <rect x="840" y="340" width="130" height="8" rx="4"/>
+      <rect x="840" y="360" width="100" height="7" rx="3"/>
+    </g>
+    <!-- charts -->
+    <g fill="url(#blue)">
+      <rect x="650" y="505" width="25" height="35" rx="4"/>
+      <rect x="685" y="485" width="25" height="55" rx="4"/>
+      <rect x="720" y="455" width="25" height="85" rx="4"/>
+      <rect x="755" y="470" width="25" height="70" rx="4"/>
+    </g>
+    <!-- keyboard/base -->
+    <path d="M520 625h620l95 260q8 25-20 25H455q-28 0-20-25z" fill="url(#purple)" stroke="#2563EB" stroke-width="7"/>
+    <path d="M555 665h550l55 165H500z" fill="#080B24"/>
+    <g fill="#172554" stroke="#2563EB" stroke-width="2">
+      <rect x="575" y="690" width="42" height="24" rx="5"/>
+      <rect x="625" y="690" width="42" height="24" rx="5"/>
+      <rect x="675" y="690" width="42" height="24" rx="5"/>
+      <rect x="725" y="690" width="42" height="24" rx="5"/>
+      <rect x="775" y="690" width="42" height="24" rx="5"/>
+      <rect x="825" y="690" width="42" height="24" rx="5"/>
+      <rect x="875" y="690" width="42" height="24" rx="5"/>
+      <rect x="925" y="690" width="42" height="24" rx="5"/>
+      <rect x="975" y="690" width="42" height="24" rx="5"/>
+      <rect x="1025" y="690" width="42" height="24" rx="5"/>
+    </g>
+  </g>
+
+  <!-- standing person -->
+  <g>
+    <circle cx="680" cy="520" r="27" fill="#F5B79B"/>
+    <path d="M650 555q30-25 60 0v100h-60z" fill="url(#purple)"/>
+    <path d="M660 650h20v115h-20zM700 650h20v115h-20z" fill="#312E81"/>
+    <path d="M658 765h25v10h-30zM698 765h25v10h-30z" fill="#0F172A"/>
+    <path d="M648 565q-40 20-55 45l12 14 52-35z" fill="#7C3AED"/>
+  </g>
+
+  <!-- left person -->
+  <g>
+    <circle cx="205" cy="690" r="25" fill="#F5B79B"/>
+    <path d="M175 725q30-25 60 0v110h-60z" fill="#06B6D4"/>
+    <path d="M185 835h20v115h-20zM220 835h20v115h-20z" fill="#312E81"/>
+    <path d="M180 950h30v10h-35zM215 950h30v10h-35z" fill="#7C3AED"/>
+    <path d="M235 735l85-55 10 17-82 62z" fill="#06B6D4"/>
+  </g>
+
+  <!-- floating holographic panels -->
+  <g opacity=".72">
+    <rect x="135" y="590" width="180" height="125" rx="12" fill="#172554" stroke="#67E8F9" stroke-width="3" transform="rotate(10 135 590)"/>
+    <path d="M165 680l35-30 35 15 45-55" stroke="#A5F3FC" stroke-width="6"/>
+    <rect x="505" y="430" width="150" height="95" rx="10" fill="#312E81" stroke="#67E8F9" stroke-width="3" transform="rotate(8 505 430)"/>
+    <g stroke="#A5F3FC" stroke-width="5">
+      <path d="M530 460h90M530 480h65M530 500h80"/>
+    </g>
+  </g>
+
+  <!-- chart bars -->
+  <g>
+    <rect x="1010" y="790" width="35" height="105" rx="5" fill="#7C3AED"/>
+    <rect x="1055" y="750" width="35" height="145" rx="5" fill="#8B5CF6"/>
+    <rect x="1100" y="705" width="35" height="190" rx="5" fill="#22D3EE"/>
+  </g>
+
+  <!-- sparkles -->
+  <g fill="#67E8F9">
+    <circle cx="280" cy="190" r="5"/>
+    <circle cx="510" cy="190" r="4"/>
+    <circle cx="550" cy="380" r="5"/>
+    <circle cx="1120" cy="500" r="5"/>
+    <circle cx="1200" cy="650" r="4"/>
+    <circle cx="750" cy="1000" r="5"/>
+  </g>
+</svg>

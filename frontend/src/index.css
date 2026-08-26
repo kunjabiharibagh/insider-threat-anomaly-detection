@@ -1,0 +1,218 @@
+@import "tailwindcss";
+
+
+/* =========================
+   RESET
+========================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* =========================
+   FULL PAGE
+========================= */
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* =========================
+   BODY
+========================= */
+
+body {
+  background-color: #05030d;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* =========================
+   MEDIA
+========================= */
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* =========================
+   FORMS
+========================= */
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+button {
+  cursor: pointer;
+}
+
+/* =========================
+   LINKS
+========================= */
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* =========================
+   LISTS
+========================= */
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* =========================
+   HEADINGS
+========================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+/* =========================
+   TAILWIND THEME
+========================= */
+
+@theme {
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-heading: Arial, Helvetica, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/* =========================
+   ROOT VARIABLES
+========================= */
+
+:root {
+  --background: #05030d;
+  --foreground: #ffffff;
+
+  --card: #0d0a18;
+  --card-foreground: #ffffff;
+
+  --primary: #8b5cf6;
+  --primary-foreground: #ffffff;
+
+  --secondary: #171225;
+  --secondary-foreground: #ffffff;
+
+  --muted: #171225;
+  --muted-foreground: #a1a1aa;
+
+  --accent: #7c3aed;
+  --accent-foreground: #ffffff;
+
+  --border: #272238;
+  --input: #272238;
+  --ring: #8b5cf6;
+
+  --radius: 0.625rem;
+}
+
+/* =========================
+   DARK MODE
+========================= */
+
+.dark {
+  --background: #05030d;
+  --foreground: #ffffff;
+
+  --card: #0d0a18;
+  --card-foreground: #ffffff;
+
+  --primary: #8b5cf6;
+  --primary-foreground: #ffffff;
+
+  --secondary: #171225;
+  --secondary-foreground: #ffffff;
+
+  --muted: #171225;
+  --muted-foreground: #a1a1aa;
+
+  --accent: #7c3aed;
+  --accent-foreground: #ffffff;
+
+  --border: #272238;
+  --input: #272238;
+  --ring: #8b5cf6;
+}
+
+/* =========================
+   BASE LAYER
+========================= */
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+  }
+}
