@@ -22,7 +22,28 @@ def handle_missing_values(df):
     print(df.isnull().sum())
 
     return df
+def fix_formats(df):
+    # Convert the "date" column from plain text into a real date type
+    # errors="coerce" means: if a date is broken/unreadable, turn it into NaT (empty date)
+    df["date"] = pd.to_datetime(df["date"], errors="coerce")
+
+    # Count how many dates were broken
+    bad_dates = df["date"].isnull().sum()
+    print(f"Broken dates found: {bad_dates}")
+
+    # Drop any rows where the date couldn't be understood
+    df = df.dropna(subset=["date"])
+
+    # Extract just the hour number from login_time (e.g. "09:34" -> 9)
+    # This turns text into a number the model can actually use later
+    df["login_hour"] = df["login_time"].str.split(":").str[0].astype(int)
+
+    print("Formats fixed. Sample:")
+    print(df[["date", "login_time", "login_hour"]].head())
+
+    return df
 
 if __name__ == "__main__":
     df = load_raw_data("data/raw/user_activity_logs.csv")
     df = handle_missing_values(df)
+    df = fix_formats(df)
