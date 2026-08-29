@@ -1,0 +1,3 @@
+id,date,user,pc,activity
+{TEST-0001},01/02/2010 08:00:00,ABC0001,PC-1000,Logon
+{TEST-0002},01/02/2010 08:05:00,ABC0001,PC-1000,Logoff
