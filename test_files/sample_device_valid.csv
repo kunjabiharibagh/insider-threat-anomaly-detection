@@ -1,0 +1,3 @@
+id,date,user,pc,activity
+{DEV-01},01/02/2010 09:30:00,ABC0001,PC-1000,Connect
+{DEV-02},01/02/2010 10:15:00,ABC0001,PC-1000,Disconnect

@@ -7,12 +7,20 @@ st.set_page_config(page_title="Insider Threat Detection - Log Upload", layout="w
 RAW_DATA_PATH = "data/raw/r4.2"
 os.makedirs(RAW_DATA_PATH, exist_ok=True)
 
-# Required columns per CERT log type
+# Columns that must exist in the file
 REQUIRED_COLUMNS = {
     "logon": ["id", "date", "user", "pc", "activity"],
     "device": ["id", "date", "user", "pc", "activity"],
     "file": ["id", "date", "user", "pc", "filename"],
     "email": ["id", "date", "user", "pc", "to", "cc", "bcc"]
+}
+
+# Columns that must exist AND have actual data (blank is a real problem here)
+MUST_HAVE_DATA = {
+    "logon": ["id", "date", "user", "pc", "activity"],
+    "device": ["id", "date", "user", "pc", "activity"],
+    "file": ["id", "date", "user", "pc", "filename"],
+    "email": ["id", "date", "user", "pc"]  # to/cc/bcc excluded — blank cc/bcc is normal
 }
 
 st.title("🔒 Insider Threat Detection — Raw Activity Log Upload")
@@ -37,7 +45,7 @@ def validate_log(df, log_type):
     if df.columns.duplicated().any():
         errors.append("File contains duplicate column names.")
 
-    for col in required:
+    for col in MUST_HAVE_DATA[log_type]:
         if col in df.columns and df[col].isnull().all():
             errors.append(f"Required column '{col}' is completely empty.")
 

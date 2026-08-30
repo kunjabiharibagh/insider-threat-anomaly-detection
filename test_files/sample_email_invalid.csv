@@ -1,0 +1,2 @@
+id,timestamp,sender,recipient
+{EMAIL-BAD-01},01/02/2010 09:00:00,alice@dtaa.com,bob@dtaa.com
