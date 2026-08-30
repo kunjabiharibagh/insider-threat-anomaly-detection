@@ -76,3 +76,40 @@ if uploaded_file is not None:
 
 else:
     st.info("Please select a log type and upload a CSV file to continue.")
+    
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from src.eda_summary import load_processed_features, compute_summary_stats, get_trend_comparison_data, get_capture_rate_curve
+import matplotlib.pyplot as plt
+
+st.divider()
+st.header("📊 Exploratory Data Analysis Dashboard")
+
+try:
+    eda_df = load_processed_features()
+
+    st.subheader("Summary Statistics: Normal vs. Insider Days")
+    summary_stats = compute_summary_stats(eda_df)
+    st.dataframe(summary_stats)
+
+    st.subheader("Feature Comparison: Normal vs. Insider")
+    feature_choice = st.selectbox(
+        "Select a feature to compare",
+        options=['logon_count', 'after_hours_logon_count', 'distinct_pc_count',
+                 'usb_connect_count', 'file_access_count', 'email_count', 'email_external_count']
+    )
+
+    trend_data = get_trend_comparison_data(eda_df, feature_choice)
+    fig, ax = plt.subplots(figsize=(6, 4))
+    ax.boxplot([trend_data['Normal'], trend_data['Insider']], tick_labels=['Normal', 'Insider'])
+    ax.set_title(f'{feature_choice}: Normal vs Insider Days')
+    ax.set_ylabel(feature_choice)
+    st.pyplot(fig)
+
+    st.subheader("Model Performance: Capture Rate vs. Data Reviewed")
+    capture_df = get_capture_rate_curve(eda_df)
+    st.line_chart(capture_df.set_index('pct_reviewed')[['pct_caught', 'random_chance']])
+
+except FileNotFoundError:
+    st.warning("Processed features file not found. Run the feature engineering and model pipeline first.")
