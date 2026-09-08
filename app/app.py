@@ -76,11 +76,11 @@ if uploaded_file is not None:
 
 else:
     st.info("Please select a log type and upload a CSV file to continue.")
-    
+
 import sys
-import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.eda_summary import load_processed_features, compute_summary_stats, get_trend_comparison_data, get_capture_rate_curve
+from src.reason_generation import load_flagged_data, generate_reasons_for_flagged_users
 import matplotlib.pyplot as plt
 
 st.divider()
@@ -113,3 +113,25 @@ try:
 
 except FileNotFoundError:
     st.warning("Processed features file not found. Run the feature engineering and model pipeline first.")
+
+st.divider()
+st.header("🚩 Flagged Users — Reasons")
+
+try:
+    flagged_df = load_flagged_data()
+    flagged_with_reasons = generate_reasons_for_flagged_users(flagged_df)
+
+    st.write(f"**Total flagged user-days:** {len(flagged_with_reasons)}")
+
+    search_user = st.text_input("Search by username (optional)")
+    display_df = flagged_with_reasons
+    if search_user:
+        display_df = display_df[display_df['user'].str.contains(search_user, case=False, na=False)]
+
+    st.dataframe(
+        display_df.sort_values('iso_forest_score', ascending=False).head(50),
+        use_container_width=True
+    )
+
+except FileNotFoundError:
+    st.warning("Run the model pipeline first to generate flagged users with reasons.")
