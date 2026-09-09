@@ -6,7 +6,7 @@ As the system, I want to extract behavioral features (login frequency,
 off-hours activity, session duration), so that the model can detect
 meaningful patterns.
 
-Definition of Done: Feature table is generated correctly for each user.
+
 """
 
 import pandas as pd

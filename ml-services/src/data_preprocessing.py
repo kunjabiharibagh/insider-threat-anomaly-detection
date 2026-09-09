@@ -5,7 +5,6 @@ User Story: US-02 - Clean and format uploaded data
 As the system, I want the uploaded data cleaned and formatted, so that
 missing or inconsistent values don't break the model.
 
-Definition of Done: Cleaned dataset has no missing/broken values.
 """
 
 import pandas as pd
