@@ -1,0 +1,10 @@
+MODEL VALIDATION REPORT - US-07
+========================================
+True Positives  (correctly flagged threats): 5
+False Positives (normal users wrongly flagged): 0
+True Negatives  (correctly left unflagged): 45
+False Negatives (missed threats): 0
+
+False Positive Rate: 0.0%
+Precision: 100.0%
+Recall: 100.0%
