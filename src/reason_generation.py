@@ -1,4 +1,9 @@
 import pandas as pd
+import streamlit as st
+
+@st.cache_data
+def load_flagged_data(path="data/processed/user_daily_features_with_flags.csv"):
+    return pd.read_csv(path)
 
 # Human-readable labels for each feature
 FEATURE_LABELS = {
@@ -79,3 +84,5 @@ if __name__ == "__main__":
 
     flagged_with_reasons.to_csv("data/processed/flagged_users_with_reasons.csv", index=False)
     print("\nSaved to data/processed/flagged_users_with_reasons.csv")
+    import streamlit as st
+

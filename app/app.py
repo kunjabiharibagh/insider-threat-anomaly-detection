@@ -1,13 +1,15 @@
 import streamlit as st
 import pandas as pd
 import os
+import sys
 
 st.set_page_config(page_title="Insider Threat Detection - Log Upload", layout="wide")
 
 RAW_DATA_PATH = "data/raw/r4.2"
 os.makedirs(RAW_DATA_PATH, exist_ok=True)
 
-# Columns that must exist in the file
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 REQUIRED_COLUMNS = {
     "logon": ["id", "date", "user", "pc", "activity"],
     "device": ["id", "date", "user", "pc", "activity"],
@@ -15,19 +17,29 @@ REQUIRED_COLUMNS = {
     "email": ["id", "date", "user", "pc", "to", "cc", "bcc"]
 }
 
-# Columns that must exist AND have actual data (blank is a real problem here)
 MUST_HAVE_DATA = {
     "logon": ["id", "date", "user", "pc", "activity"],
     "device": ["id", "date", "user", "pc", "activity"],
     "file": ["id", "date", "user", "pc", "filename"],
-    "email": ["id", "date", "user", "pc"]  # to/cc/bcc excluded — blank cc/bcc is normal
+    "email": ["id", "date", "user", "pc"]
 }
 
 st.title("🔒 Insider Threat Detection — Raw Activity Log Upload")
 st.write("Upload a CERT-format activity log file (logon, device, file, or email) to begin analysis.")
 
-log_type = st.selectbox("Select log type", options=list(REQUIRED_COLUMNS.keys()))
+with st.expander("ℹ️ How This System Works (Pipeline Overview)"):
+    st.markdown("""
+    **Data Pipeline:**
 
+    1. **Raw Logs** — Admin uploads CERT-format activity logs (logon, device, file, email)
+    2. **Feature Extraction** — Raw events are converted into per-user daily behavioral features
+    3. **Z-Score Normalization** — Each feature is compared against that specific user's own historical baseline
+    4. **Isolation Forest / DBSCAN** — Unsupervised models assign an anomaly score to each user-day
+    5. **Anomaly Scores** — The most statistically unusual days (top ~1%) are flagged for review
+    6. **Reason Generation** — For each flagged day, the system explains which features contributed most
+    """)
+
+log_type = st.selectbox("Select log type", options=list(REQUIRED_COLUMNS.keys()))
 uploaded_file = st.file_uploader("Upload CSV log file", type=["csv"])
 
 def validate_log(df, log_type):
@@ -54,7 +66,6 @@ def validate_log(df, log_type):
 if uploaded_file is not None:
     try:
         df = pd.read_csv(uploaded_file)
-
         validation_errors = validate_log(df, log_type)
 
         if validation_errors:
@@ -64,7 +75,6 @@ if uploaded_file is not None:
         else:
             save_path = os.path.join(RAW_DATA_PATH, f"{log_type}.csv")
             df.to_csv(save_path, index=False)
-
             st.session_state[f"{log_type}_logs"] = df
 
             st.success(f"✅ File uploaded and validated successfully as '{log_type}.csv'")
@@ -73,12 +83,10 @@ if uploaded_file is not None:
 
     except Exception as e:
         st.error(f"❌ An error occurred while processing the file: {str(e)}")
-
 else:
     st.info("Please select a log type and upload a CSV file to continue.")
 
-import sys
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# ========== EDA DASHBOARD ==========
 from src.eda_summary import load_processed_features, compute_summary_stats, get_trend_comparison_data, get_capture_rate_curve
 from src.reason_generation import load_flagged_data, generate_reasons_for_flagged_users
 import matplotlib.pyplot as plt
@@ -114,6 +122,7 @@ try:
 except FileNotFoundError:
     st.warning("Processed features file not found. Run the feature engineering and model pipeline first.")
 
+# ========== FLAGGED USERS ==========
 st.divider()
 st.header("🚩 Flagged Users — Reasons")
 
@@ -135,3 +144,113 @@ try:
 
 except FileNotFoundError:
     st.warning("Run the model pipeline first to generate flagged users with reasons.")
+
+# ========== USB DEVICE MONITOR (single unified section) ==========
+from src.usb_monitor import (
+    get_removable_drives, load_approved_hashes, scan_drive_detailed,
+    format_dt
+)
+
+st.divider()
+st.header("🔌 USB Device Monitor")
+st.write("Fully automatic — just insert or eject a USB drive. No action needed.")
+
+if "usb_current_files" not in st.session_state:
+    st.session_state.usb_current_files = {}
+if "usb_last_session" not in st.session_state:
+    st.session_state.usb_last_session = {}
+
+
+@st.fragment(run_every="3s")
+def usb_monitor_fragment():
+    current_drives = get_removable_drives()
+    approved_hashes = load_approved_hashes()
+
+    for drive in current_drives:
+        session = st.session_state.usb_last_session.get(drive)
+        if session is None or session.get("eject_time") is not None:
+            inject_time_str = format_dt()
+            st.session_state.usb_last_session[drive] = {"inject_time": inject_time_str, "eject_time": None}
+            st.session_state.usb_current_files[drive] = scan_drive_detailed(drive, approved_hashes, inject_time_str)
+
+    for drive in list(st.session_state.usb_current_files.keys()):
+        if drive not in current_drives:
+            eject_time_str = format_dt()
+            if drive in st.session_state.usb_last_session:
+                st.session_state.usb_last_session[drive]["eject_time"] = eject_time_str
+            del st.session_state.usb_current_files[drive]
+
+    st.write(f"**Status:** {'🟢 Drive connected' if current_drives else '⚪ No drive connected'}")
+
+    all_files = []
+    for drive, files in st.session_state.usb_current_files.items():
+        for f in files:
+            all_files.append({"drive": drive, **f})
+
+    total_checked = len(all_files)
+    total_anomalies = len([f for f in all_files if f["status"] == "ANOMALY"])
+    st.write(f"**Files checked:** {total_checked} | **Anomalies:** {total_anomalies}")
+
+    if st.session_state.usb_last_session:
+        st.subheader("Session Times")
+        for drive, session in st.session_state.usb_last_session.items():
+            eject_display = session["eject_time"] if session["eject_time"] else "Still connected"
+            st.write(f"**{drive}** — Inject Time: {session['inject_time']} | Eject Time: {eject_display}")
+
+    st.subheader("File Details — Anomalous Files")
+    if all_files:
+        files_df = pd.DataFrame(all_files)
+        anomaly_df = files_df[files_df["status"] == "ANOMALY"]
+        if not anomaly_df.empty:
+            st.dataframe(
+                anomaly_df[["drive", "file", "size_kb", "last_modified", "inject_time"]],
+                use_container_width=True
+            )
+        else:
+            st.success("✅ No anomalous files on currently connected drives.")
+    else:
+        if st.session_state.usb_last_session:
+            st.success("✅ No anomalous files detected — last connected drive has been ejected.")
+        else:
+            st.info("No USB drive currently connected.")
+
+
+usb_monitor_fragment()
+from src.file_monitor import start_file_monitor, stop_file_monitor
+
+st.divider()
+st.header("📁 File Access Monitor")
+st.write("Watches a folder in real time for file creation, modification, deletion, and renaming.")
+
+if "file_monitor_observer" not in st.session_state:
+    st.session_state.file_monitor_observer = None
+if "file_monitor_events" not in st.session_state:
+    st.session_state.file_monitor_events = []
+if "file_monitor_path" not in st.session_state:
+    st.session_state.file_monitor_path = os.path.expanduser("~\\Desktop")
+
+watch_path = st.text_input("Folder to monitor", value=st.session_state.file_monitor_path)
+
+col1, col2 = st.columns(2)
+with col1:
+    if st.button("▶️ Start File Monitoring"):
+        if st.session_state.file_monitor_observer is None:
+            st.session_state.file_monitor_path = watch_path
+            st.session_state.file_monitor_observer = start_file_monitor(watch_path, st.session_state.file_monitor_events)
+            st.success(f"Started monitoring: {watch_path}")
+
+with col2:
+    if st.button("⏹️ Stop File Monitoring"):
+        if st.session_state.file_monitor_observer is not None:
+            stop_file_monitor(st.session_state.file_monitor_observer)
+            st.session_state.file_monitor_observer = None
+            st.info("File monitoring stopped.")
+
+st.write(f"**Status:** {'🟢 Monitoring: ' + st.session_state.file_monitor_path if st.session_state.file_monitor_observer else '🔴 Not monitoring'}")
+
+if st.session_state.file_monitor_events:
+    import pandas as pd
+    events_df = pd.DataFrame(st.session_state.file_monitor_events[::-1])
+    st.dataframe(events_df, use_container_width=True)
+else:
+    st.info("No file events recorded yet.")

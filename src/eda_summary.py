@@ -1,4 +1,9 @@
 import pandas as pd
+import streamlit as st
+
+@st.cache_data
+def load_processed_features(path="data/processed/user_daily_features_with_flags.csv"):
+    return pd.read_csv(path)
 
 def load_processed_features(path="data/processed/user_daily_features_with_flags.csv"):
     return pd.read_csv(path)

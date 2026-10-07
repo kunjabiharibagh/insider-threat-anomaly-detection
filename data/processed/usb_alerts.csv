@@ -1,0 +1,329 @@
+timestamp,drive,file,status,reason
+2026-10-04T19:02:54.304745,D:\,D:\DAA QUESTION BANK.docx,ALERT,File content does not match approved device data
+2026-10-04T19:02:54.345522,D:\,D:\Soft Computing.pdf,ALERT,File content does not match approved device data
+2026-10-04T19:02:54.416812,D:\,D:\Introduction to Soft Computing.pdf,ALERT,File content does not match approved device data
+2026-10-04T19:02:54.515211,D:\,D:\EME.pdf,ALERT,File content does not match approved device data
+2026-10-04T19:02:54.580097,D:\,D:\EME QUESTION BANK 1st sem.pdf,ALERT,File content does not match approved device data
+2026-10-04T19:02:55.083612,D:\,D:\Durga Sir Python.pdf,ALERT,File content does not match approved device data
+2026-10-04T19:02:55.169478,D:\,D:\DE LECTURE - 05.pdf,ALERT,File content does not match approved device data
+2026-10-04T19:02:55.259117,D:\,D:\DE LECTURE - 07.pdf,ALERT,File content does not match approved device data
+2026-10-04T19:02:55.371449,D:\,D:\DE LECTURE - 06.pdf,ALERT,File content does not match approved device data
+2026-10-04T19:02:55.431519,D:\,D:\DE Assignment 01.pdf,ALERT,File content does not match approved device data
+2026-10-04T19:02:55.521386,D:\,D:\DE LECTURE - 02.pdf,ALERT,File content does not match approved device data
+2026-10-04T19:02:55.668285,D:\,D:\DE LECTURE - 01.pdf,ALERT,File content does not match approved device data
+2026-10-04T19:02:55.900663,D:\,D:\DE LECTURE - 13.pdf,ALERT,File content does not match approved device data
+2026-10-04T19:02:55.923136,D:\,D:\SYLLABUS(TOC).docx,ALERT,File content does not match approved device data
+2026-10-04T19:02:55.960008,D:\,D:\ESE SYLLABUS.pdf,ALERT,File content does not match approved device data
+2026-10-04T19:02:55.987956,D:\,D:\0. OS THEORY SYLLABUS(2024)-5 units.docx,ALERT,File content does not match approved device data
+2026-10-04T19:02:56.067937,D:\,D:\FPP SYLLABUS - 4TH SEM - 2023-27.pdf,ALERT,File content does not match approved device data
+2026-10-04T19:02:56.093618,D:\,D:\OOPS Syllabus (R 23) - Copy.docx,ALERT,File content does not match approved device data
+2026-10-04T19:02:56.119653,D:\,D:\DE SYLLABUS.docx,ALERT,File content does not match approved device data
+2026-10-04T19:02:56.160026,D:\,D:\ISC SYLLABUS.pdf,ALERT,File content does not match approved device data
+2026-10-04T19:02:56.181802,D:\,D:\elevoc_dnn_kernel.log,ALERT,File content does not match approved device data
+2026-10-04T19:02:56.189982,D:\,D:\System Volume Information\WPSettings.dat,ALERT,File content does not match approved device data
+2026-10-04T19:02:56.191445,D:\,D:\System Volume Information\IndexerVolumeGuid,ALERT,File content does not match approved device data
+2026-10-04T19:02:57.020177,D:\,D:\Music\.thumbnails\.database_uuid,ALERT,File content does not match approved device data
+2026-10-04T19:02:57.020177,D:\,D:\Music\.thumbnails\.nomedia,ALERT,File content does not match approved device data
+2026-10-04T19:02:58.089371,D:\,D:\Pictures\.thumbnails\.database_uuid,ALERT,File content does not match approved device data
+2026-10-04T19:02:58.089371,D:\,D:\Pictures\.thumbnails\.nomedia,ALERT,File content does not match approved device data
+2026-10-04T19:02:58.093671,D:\,D:\Movies\.thumbnails\.database_uuid,ALERT,File content does not match approved device data
+2026-10-04T19:02:58.093671,D:\,D:\Movies\.thumbnails\.nomedia,ALERT,File content does not match approved device data
+2026-10-04T19:02:58.143108,D:\,D:\adarsh\ZENUS GROUP RESUME(KBB).pdf,ALERT,File content does not match approved device data
+2026-10-04T19:02:58.185581,D:\,D:\adarsh\Technical resume-1.pdf,ALERT,File content does not match approved device data
+2026-10-04T19:02:58.190999,D:\,D:\Android\data\.nomedia,ALERT,File content does not match approved device data
+2026-10-04T19:07:51.966249,test_files,test_files\sample_device_invalid.csv,ALERT,File content does not match approved device data
+2026-10-04T19:07:51.973473,test_files,test_files\sample_device_valid.csv,ALERT,File content does not match approved device data
+2026-10-04T19:07:51.980982,test_files,test_files\sample_email_invalid.csv,ALERT,File content does not match approved device data
+2026-10-04T19:07:52.000100,test_files,test_files\sample_email_valid.csv,ALERT,File content does not match approved device data
+2026-10-04T19:07:52.002633,test_files,test_files\sample_file_invalid.csv,ALERT,File content does not match approved device data
+2026-10-04T19:07:52.016810,test_files,test_files\sample_file_valid.csv,ALERT,File content does not match approved device data
+2026-10-04T19:07:52.025915,test_files,test_files\sample_logon_invalid.csv,ALERT,File content does not match approved device data
+2026-10-04T19:07:52.035538,test_files,test_files\sample_logon_valid.csv,ALERT,File content does not match approved device data
+2026-10-04T19:07:52.047799,test_files,test_files\unauthorized_file.txt,ALERT,File content does not match approved device data
+2026-10-04T19:07:52.050964,test_files,test_files\approved_sample\company_report.txt,APPROVED,Matches known device data
+2026-10-04T19:08:51.027146,test_files,test_files\sample_device_invalid.csv,ALERT,File content does not match approved device data
+2026-10-04T19:08:51.028154,test_files,test_files\sample_device_valid.csv,ALERT,File content does not match approved device data
+2026-10-04T19:08:51.029174,test_files,test_files\sample_email_invalid.csv,ALERT,File content does not match approved device data
+2026-10-04T19:08:51.029174,test_files,test_files\sample_email_valid.csv,ALERT,File content does not match approved device data
+2026-10-04T19:08:51.030366,test_files,test_files\sample_file_invalid.csv,ALERT,File content does not match approved device data
+2026-10-04T19:08:51.030366,test_files,test_files\sample_file_valid.csv,ALERT,File content does not match approved device data
+2026-10-04T19:08:51.031695,test_files,test_files\sample_logon_invalid.csv,ALERT,File content does not match approved device data
+2026-10-04T19:08:51.031695,test_files,test_files\sample_logon_valid.csv,ALERT,File content does not match approved device data
+2026-10-04T19:08:51.032856,test_files,test_files\unauthorized_file.txt,ALERT,File content does not match approved device data
+2026-10-04T19:08:51.032856,test_files,test_files\approved_sample\company_report.txt,APPROVED,Matches known device data
+2026-10-04T19:11:45.220929,test_files,test_files\sample_device_invalid.csv,ANOMALY,File content does not match approved device data
+2026-10-04T19:11:45.220929,test_files,test_files\sample_device_valid.csv,ANOMALY,File content does not match approved device data
+2026-10-04T19:11:45.220929,test_files,test_files\sample_email_invalid.csv,ANOMALY,File content does not match approved device data
+2026-10-04T19:11:45.220929,test_files,test_files\sample_email_valid.csv,ANOMALY,File content does not match approved device data
+2026-10-04T19:11:45.224199,test_files,test_files\sample_file_invalid.csv,ANOMALY,File content does not match approved device data
+2026-10-04T19:11:45.224199,test_files,test_files\sample_file_valid.csv,ANOMALY,File content does not match approved device data
+2026-10-04T19:11:45.224199,test_files,test_files\sample_logon_invalid.csv,ANOMALY,File content does not match approved device data
+2026-10-04T19:11:45.224199,test_files,test_files\sample_logon_valid.csv,ANOMALY,File content does not match approved device data
+2026-10-04T19:11:45.225691,test_files,test_files\unauthorized_file.txt,ANOMALY,File content does not match approved device data
+2026-10-04T19:11:45.225691,test_files,test_files\approved_sample\company_report.txt,APPROVED,Matches known device data
+2026-10-04T19:14:33.933934,D:\,D:\DAA QUESTION BANK.docx,ANOMALY,File content does not match approved device data
+2026-10-04T19:14:33.990298,D:\,D:\Soft Computing.pdf,ANOMALY,File content does not match approved device data
+2026-10-04T19:14:34.061285,D:\,D:\Introduction to Soft Computing.pdf,ANOMALY,File content does not match approved device data
+2026-10-04T19:14:34.206503,D:\,D:\EME.pdf,ANOMALY,File content does not match approved device data
+2026-10-04T19:14:34.269159,D:\,D:\EME QUESTION BANK 1st sem.pdf,ANOMALY,File content does not match approved device data
+2026-10-04T19:14:35.030060,D:\,D:\Durga Sir Python.pdf,ANOMALY,File content does not match approved device data
+2026-10-04T19:14:35.109258,D:\,D:\DE LECTURE - 05.pdf,ANOMALY,File content does not match approved device data
+2026-10-04T19:14:35.188714,D:\,D:\DE LECTURE - 07.pdf,ANOMALY,File content does not match approved device data
+2026-10-04T19:14:35.284073,D:\,D:\DE LECTURE - 06.pdf,ANOMALY,File content does not match approved device data
+2026-10-04T19:14:35.347397,D:\,D:\DE Assignment 01.pdf,ANOMALY,File content does not match approved device data
+2026-10-04T19:14:35.435964,D:\,D:\DE LECTURE - 02.pdf,ANOMALY,File content does not match approved device data
+2026-10-04T19:14:35.548202,D:\,D:\DE LECTURE - 01.pdf,ANOMALY,File content does not match approved device data
+2026-10-04T19:14:35.755295,D:\,D:\DE LECTURE - 13.pdf,ANOMALY,File content does not match approved device data
+2026-10-04T19:14:35.771063,D:\,D:\SYLLABUS(TOC).docx,ANOMALY,File content does not match approved device data
+2026-10-04T19:14:35.802984,D:\,D:\ESE SYLLABUS.pdf,ANOMALY,File content does not match approved device data
+2026-10-04T19:14:35.828566,D:\,D:\0. OS THEORY SYLLABUS(2024)-5 units.docx,ANOMALY,File content does not match approved device data
+2026-10-04T19:14:35.903599,D:\,D:\FPP SYLLABUS - 4TH SEM - 2023-27.pdf,ANOMALY,File content does not match approved device data
+2026-10-04T19:14:35.914456,D:\,D:\OOPS Syllabus (R 23) - Copy.docx,ANOMALY,File content does not match approved device data
+2026-10-04T19:14:35.920609,D:\,D:\DE SYLLABUS.docx,ANOMALY,File content does not match approved device data
+2026-10-04T19:14:35.946375,D:\,D:\ISC SYLLABUS.pdf,ANOMALY,File content does not match approved device data
+2026-10-04T19:14:35.950395,D:\,D:\elevoc_dnn_kernel.log,ANOMALY,File content does not match approved device data
+2026-10-04T19:14:35.950395,D:\,D:\System Volume Information\WPSettings.dat,ANOMALY,File content does not match approved device data
+2026-10-04T19:14:35.956433,D:\,D:\System Volume Information\IndexerVolumeGuid,ANOMALY,File content does not match approved device data
+2026-10-04T19:14:35.966202,D:\,D:\Music\.thumbnails\.database_uuid,ANOMALY,File content does not match approved device data
+2026-10-04T19:14:35.966202,D:\,D:\Music\.thumbnails\.nomedia,ANOMALY,File content does not match approved device data
+2026-10-04T19:14:35.977853,D:\,D:\Pictures\.thumbnails\.database_uuid,ANOMALY,File content does not match approved device data
+2026-10-04T19:14:35.977853,D:\,D:\Pictures\.thumbnails\.nomedia,ANOMALY,File content does not match approved device data
+2026-10-04T19:14:35.977853,D:\,D:\Movies\.thumbnails\.database_uuid,ANOMALY,File content does not match approved device data
+2026-10-04T19:14:35.977853,D:\,D:\Movies\.thumbnails\.nomedia,ANOMALY,File content does not match approved device data
+2026-10-04T19:14:36.029205,D:\,D:\adarsh\ZENUS GROUP RESUME(KBB).pdf,ANOMALY,File content does not match approved device data
+2026-10-04T19:14:36.065301,D:\,D:\adarsh\Technical resume-1.pdf,ANOMALY,File content does not match approved device data
+2026-10-04T19:14:36.069480,D:\,D:\Android\data\.nomedia,ANOMALY,File content does not match approved device data
+2026-10-05T17:54:02.622204,D:\,D:\DAA QUESTION BANK.docx,ANOMALY,File content does not match approved device data
+2026-10-05T17:54:02.690155,D:\,D:\Soft Computing.pdf,ANOMALY,File content does not match approved device data
+2026-10-05T17:54:02.800955,D:\,D:\Introduction to Soft Computing.pdf,ANOMALY,File content does not match approved device data
+2026-10-05T17:54:03.053387,D:\,D:\EME.pdf,ANOMALY,File content does not match approved device data
+2026-10-05T17:54:03.182750,D:\,D:\EME QUESTION BANK 1st sem.pdf,ANOMALY,File content does not match approved device data
+2026-10-05T17:54:03.729443,D:\,D:\Durga Sir Python.pdf,ANOMALY,File content does not match approved device data
+2026-10-05T17:54:03.827303,D:\,D:\DE LECTURE - 05.pdf,ANOMALY,File content does not match approved device data
+2026-10-05T17:54:03.931879,D:\,D:\DE LECTURE - 07.pdf,ANOMALY,File content does not match approved device data
+2026-10-05T17:54:04.056905,D:\,D:\DE LECTURE - 06.pdf,ANOMALY,File content does not match approved device data
+2026-10-05T17:54:04.126725,D:\,D:\DE Assignment 01.pdf,ANOMALY,File content does not match approved device data
+2026-10-05T17:54:04.228568,D:\,D:\DE LECTURE - 02.pdf,ANOMALY,File content does not match approved device data
+2026-10-05T17:54:04.374760,D:\,D:\DE LECTURE - 01.pdf,ANOMALY,File content does not match approved device data
+2026-10-05T17:54:04.597237,D:\,D:\DE LECTURE - 13.pdf,ANOMALY,File content does not match approved device data
+2026-10-05T17:54:04.625410,D:\,D:\SYLLABUS(TOC).docx,ANOMALY,File content does not match approved device data
+2026-10-05T17:54:04.667644,D:\,D:\ESE SYLLABUS.pdf,ANOMALY,File content does not match approved device data
+2026-10-05T17:54:04.692677,D:\,D:\0. OS THEORY SYLLABUS(2024)-5 units.docx,ANOMALY,File content does not match approved device data
+2026-10-05T17:54:04.761526,D:\,D:\FPP SYLLABUS - 4TH SEM - 2023-27.pdf,ANOMALY,File content does not match approved device data
+2026-10-05T17:54:04.797715,D:\,D:\OOPS Syllabus (R 23) - Copy.docx,ANOMALY,File content does not match approved device data
+2026-10-05T17:54:04.832042,D:\,D:\DE SYLLABUS.docx,ANOMALY,File content does not match approved device data
+2026-10-05T17:54:04.875364,D:\,D:\ISC SYLLABUS.pdf,ANOMALY,File content does not match approved device data
+2026-10-05T17:54:04.897616,D:\,D:\elevoc_dnn_kernel.log,ANOMALY,File content does not match approved device data
+2026-10-05T17:54:04.910298,D:\,D:\System Volume Information\WPSettings.dat,ANOMALY,File content does not match approved device data
+2026-10-05T17:54:04.920337,D:\,D:\System Volume Information\IndexerVolumeGuid,ANOMALY,File content does not match approved device data
+2026-10-05T17:54:05.733531,D:\,D:\Music\.thumbnails\.database_uuid,ANOMALY,File content does not match approved device data
+2026-10-05T17:54:05.735806,D:\,D:\Music\.thumbnails\.nomedia,ANOMALY,File content does not match approved device data
+2026-10-05T17:54:05.757061,D:\,D:\Pictures\.thumbnails\.database_uuid,ANOMALY,File content does not match approved device data
+2026-10-05T17:54:05.757061,D:\,D:\Pictures\.thumbnails\.nomedia,ANOMALY,File content does not match approved device data
+2026-10-05T17:54:05.770559,D:\,D:\Movies\.thumbnails\.database_uuid,ANOMALY,File content does not match approved device data
+2026-10-05T17:54:05.771575,D:\,D:\Movies\.thumbnails\.nomedia,ANOMALY,File content does not match approved device data
+2026-10-05T17:54:05.813919,D:\,D:\adarsh\ZENUS GROUP RESUME(KBB).pdf,ANOMALY,File content does not match approved device data
+2026-10-05T17:54:05.886006,D:\,D:\adarsh\Technical resume-1.pdf,ANOMALY,File content does not match approved device data
+2026-10-05T17:54:05.892014,D:\,D:\Android\data\.nomedia,ANOMALY,File content does not match approved device data
+2026-10-05T19:03:10.419642,D:\,D:\DAA QUESTION BANK.docx,ANOMALY,File content does not match approved device data
+2026-10-05T19:03:10.484405,D:\,D:\Soft Computing.pdf,ANOMALY,File content does not match approved device data
+2026-10-05T19:03:10.558878,D:\,D:\Introduction to Soft Computing.pdf,ANOMALY,File content does not match approved device data
+2026-10-05T19:03:10.758935,D:\,D:\EME.pdf,ANOMALY,File content does not match approved device data
+2026-10-05T19:03:10.910161,D:\,D:\EME QUESTION BANK 1st sem.pdf,ANOMALY,File content does not match approved device data
+2026-10-05T19:03:11.526727,D:\,D:\Durga Sir Python.pdf,ANOMALY,File content does not match approved device data
+2026-10-05T19:03:11.665215,D:\,D:\DE LECTURE - 05.pdf,ANOMALY,File content does not match approved device data
+2026-10-05T19:03:11.772548,D:\,D:\DE LECTURE - 07.pdf,ANOMALY,File content does not match approved device data
+2026-10-05T19:03:12.013047,D:\,D:\DE LECTURE - 06.pdf,ANOMALY,File content does not match approved device data
+2026-10-05T19:03:12.163029,D:\,D:\DE Assignment 01.pdf,ANOMALY,File content does not match approved device data
+2026-10-05T19:03:12.389881,D:\,D:\DE LECTURE - 02.pdf,ANOMALY,File content does not match approved device data
+2026-10-05T19:03:12.544842,D:\,D:\DE LECTURE - 01.pdf,ANOMALY,File content does not match approved device data
+2026-10-05T19:03:12.860742,D:\,D:\DE LECTURE - 13.pdf,ANOMALY,File content does not match approved device data
+2026-10-05T19:03:12.880854,D:\,D:\SYLLABUS(TOC).docx,ANOMALY,File content does not match approved device data
+2026-10-05T19:03:12.922977,D:\,D:\ESE SYLLABUS.pdf,ANOMALY,File content does not match approved device data
+2026-10-05T19:03:12.943825,D:\,D:\0. OS THEORY SYLLABUS(2024)-5 units.docx,ANOMALY,File content does not match approved device data
+2026-10-05T19:03:13.016437,D:\,D:\FPP SYLLABUS - 4TH SEM - 2023-27.pdf,ANOMALY,File content does not match approved device data
+2026-10-05T19:03:13.082314,D:\,D:\OOPS Syllabus (R 23) - Copy.docx,ANOMALY,File content does not match approved device data
+2026-10-05T19:03:13.115036,D:\,D:\DE SYLLABUS.docx,ANOMALY,File content does not match approved device data
+2026-10-05T19:03:13.156302,D:\,D:\ISC SYLLABUS.pdf,ANOMALY,File content does not match approved device data
+2026-10-05T19:03:13.179605,D:\,D:\elevoc_dnn_kernel.log,ANOMALY,File content does not match approved device data
+2026-10-05T19:03:13.210964,D:\,D:\System Volume Information\WPSettings.dat,ANOMALY,File content does not match approved device data
+2026-10-05T19:03:13.230338,D:\,D:\System Volume Information\IndexerVolumeGuid,ANOMALY,File content does not match approved device data
+2026-10-05T19:03:13.264804,D:\,D:\Music\.thumbnails\.database_uuid,ANOMALY,File content does not match approved device data
+2026-10-05T19:03:13.265805,D:\,D:\Music\.thumbnails\.nomedia,ANOMALY,File content does not match approved device data
+2026-10-05T19:03:13.293634,D:\,D:\Pictures\.thumbnails\.database_uuid,ANOMALY,File content does not match approved device data
+2026-10-05T19:03:13.295642,D:\,D:\Pictures\.thumbnails\.nomedia,ANOMALY,File content does not match approved device data
+2026-10-05T19:03:13.322158,D:\,D:\Movies\.thumbnails\.database_uuid,ANOMALY,File content does not match approved device data
+2026-10-05T19:03:13.323511,D:\,D:\Movies\.thumbnails\.nomedia,ANOMALY,File content does not match approved device data
+2026-10-05T19:03:13.372349,D:\,D:\adarsh\ZENUS GROUP RESUME(KBB).pdf,ANOMALY,File content does not match approved device data
+2026-10-05T19:03:13.413870,D:\,D:\adarsh\Technical resume-1.pdf,ANOMALY,File content does not match approved device data
+2026-10-05T19:03:13.420401,D:\,D:\Android\data\.nomedia,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:53.657952,D:\,D:\DAA QUESTION BANK.docx,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:53.758150,D:\,D:\Soft Computing.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:53.868731,D:\,D:\Introduction to Soft Computing.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:53.999402,D:\,D:\EME.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:54.114978,D:\,D:\EME QUESTION BANK 1st sem.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:54.706641,D:\,D:\Durga Sir Python.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:54.805860,D:\,D:\DE LECTURE - 05.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:54.945272,D:\,D:\DE LECTURE - 07.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:55.083421,D:\,D:\DE LECTURE - 06.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:55.209452,D:\,D:\DE Assignment 01.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:55.325712,D:\,D:\DE LECTURE - 02.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:55.467728,D:\,D:\DE LECTURE - 01.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:55.815562,D:\,D:\DE LECTURE - 13.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:55.898490,D:\,D:\SYLLABUS(TOC).docx,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:55.936685,D:\,D:\ESE SYLLABUS.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:55.984590,D:\,D:\0. OS THEORY SYLLABUS(2024)-5 units.docx,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:56.079722,D:\,D:\FPP SYLLABUS - 4TH SEM - 2023-27.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:56.135550,D:\,D:\OOPS Syllabus (R 23) - Copy.docx,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:56.180289,D:\,D:\DE SYLLABUS.docx,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:56.220149,D:\,D:\ISC SYLLABUS.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:56.253466,D:\,D:\elevoc_dnn_kernel.log,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:56.299003,D:\,D:\User stories supreeti.docx,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:56.356373,D:\,D:\Statement_of_Purpose_All supreeti.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:56.383722,D:\,D:\System Volume Information\WPSettings.dat,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:56.429207,D:\,D:\System Volume Information\IndexerVolumeGuid,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:57.294208,D:\,D:\Music\.thumbnails\.database_uuid,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:57.296222,D:\,D:\Music\.thumbnails\.nomedia,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:58.390419,D:\,D:\Pictures\.thumbnails\.database_uuid,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:58.402527,D:\,D:\Pictures\.thumbnails\.nomedia,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:58.423212,D:\,D:\Movies\.thumbnails\.database_uuid,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:58.424211,D:\,D:\Movies\.thumbnails\.nomedia,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:58.531201,D:\,D:\adarsh\ZENUS GROUP RESUME(KBB).pdf,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:58.587759,D:\,D:\adarsh\Technical resume-1.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T09:18:58.601103,D:\,D:\Android\data\.nomedia,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:18.206199,D:\,D:\DAA QUESTION BANK.docx,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:18.280682,D:\,D:\Soft Computing.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:18.363983,D:\,D:\Introduction to Soft Computing.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:18.553392,D:\,D:\EME.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:18.632056,D:\,D:\EME QUESTION BANK 1st sem.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:19.191909,D:\,D:\Durga Sir Python.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:19.285216,D:\,D:\DE LECTURE - 05.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:19.385374,D:\,D:\DE LECTURE - 07.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:19.501009,D:\,D:\DE LECTURE - 06.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:19.562526,D:\,D:\DE Assignment 01.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:19.670363,D:\,D:\DE LECTURE - 02.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:19.809304,D:\,D:\DE LECTURE - 01.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:20.086736,D:\,D:\DE LECTURE - 13.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:20.114405,D:\,D:\SYLLABUS(TOC).docx,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:20.140507,D:\,D:\ESE SYLLABUS.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:20.176839,D:\,D:\0. OS THEORY SYLLABUS(2024)-5 units.docx,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:20.252735,D:\,D:\FPP SYLLABUS - 4TH SEM - 2023-27.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:20.277425,D:\,D:\OOPS Syllabus (R 23) - Copy.docx,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:20.299091,D:\,D:\DE SYLLABUS.docx,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:20.339051,D:\,D:\ISC SYLLABUS.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:20.360732,D:\,D:\elevoc_dnn_kernel.log,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:20.391007,D:\,D:\User stories supreeti.docx,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:20.415191,D:\,D:\Statement_of_Purpose_All supreeti.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:20.444847,D:\,D:\System Volume Information\WPSettings.dat,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:20.463210,D:\,D:\System Volume Information\IndexerVolumeGuid,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:20.485619,D:\,D:\Music\.thumbnails\.database_uuid,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:20.485619,D:\,D:\Music\.thumbnails\.nomedia,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:20.501963,D:\,D:\Pictures\.thumbnails\.database_uuid,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:20.501963,D:\,D:\Pictures\.thumbnails\.nomedia,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:20.509963,D:\,D:\Movies\.thumbnails\.database_uuid,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:20.509963,D:\,D:\Movies\.thumbnails\.nomedia,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:20.577592,D:\,D:\adarsh\ZENUS GROUP RESUME(KBB).pdf,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:20.622866,D:\,D:\adarsh\Technical resume-1.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T21:55:20.628958,D:\,D:\Android\data\.nomedia,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:26.259627,D:\,D:\DAA QUESTION BANK.docx,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:26.313606,D:\,D:\Soft Computing.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:26.374535,D:\,D:\Introduction to Soft Computing.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:26.550331,D:\,D:\EME.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:26.612851,D:\,D:\EME QUESTION BANK 1st sem.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:27.161860,D:\,D:\Durga Sir Python.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:27.252225,D:\,D:\DE LECTURE - 05.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:27.346790,D:\,D:\DE LECTURE - 07.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:27.461496,D:\,D:\DE LECTURE - 06.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:27.518575,D:\,D:\DE Assignment 01.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:27.619171,D:\,D:\DE LECTURE - 02.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:27.776972,D:\,D:\DE LECTURE - 01.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:28.034972,D:\,D:\DE LECTURE - 13.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:28.040994,D:\,D:\SYLLABUS(TOC).docx,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:28.076973,D:\,D:\ESE SYLLABUS.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:28.106775,D:\,D:\0. OS THEORY SYLLABUS(2024)-5 units.docx,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:28.178789,D:\,D:\FPP SYLLABUS - 4TH SEM - 2023-27.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:28.191728,D:\,D:\OOPS Syllabus (R 23) - Copy.docx,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:28.213950,D:\,D:\DE SYLLABUS.docx,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:28.251849,D:\,D:\ISC SYLLABUS.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:28.276425,D:\,D:\elevoc_dnn_kernel.log,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:28.306302,D:\,D:\User stories supreeti.docx,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:28.338195,D:\,D:\Statement_of_Purpose_All supreeti.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:28.344500,D:\,D:\System Volume Information\WPSettings.dat,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:28.358782,D:\,D:\System Volume Information\IndexerVolumeGuid,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:28.383364,D:\,D:\Music\.thumbnails\.database_uuid,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:28.383364,D:\,D:\Music\.thumbnails\.nomedia,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:28.396803,D:\,D:\Pictures\.thumbnails\.database_uuid,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:28.396803,D:\,D:\Pictures\.thumbnails\.nomedia,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:28.415175,D:\,D:\Movies\.thumbnails\.database_uuid,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:28.415175,D:\,D:\Movies\.thumbnails\.nomedia,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:28.474376,D:\,D:\adarsh\ZENUS GROUP RESUME(KBB).pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:28.520995,D:\,D:\adarsh\Technical resume-1.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:18:28.526869,D:\,D:\Android\data\.nomedia,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.761546,D:\,D:\DAA QUESTION BANK.docx,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.761546,D:\,D:\Soft Computing.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.768878,D:\,D:\Introduction to Soft Computing.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.774747,D:\,D:\EME.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.776911,D:\,D:\EME QUESTION BANK 1st sem.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.810550,D:\,D:\Durga Sir Python.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.814249,D:\,D:\DE LECTURE - 05.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.816920,D:\,D:\DE LECTURE - 07.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.823885,D:\,D:\DE LECTURE - 06.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.825601,D:\,D:\DE Assignment 01.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.825601,D:\,D:\DE LECTURE - 02.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.833233,D:\,D:\DE LECTURE - 01.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.833233,D:\,D:\DE LECTURE - 13.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.833233,D:\,D:\SYLLABUS(TOC).docx,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.833233,D:\,D:\ESE SYLLABUS.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.848868,D:\,D:\0. OS THEORY SYLLABUS(2024)-5 units.docx,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.848868,D:\,D:\FPP SYLLABUS - 4TH SEM - 2023-27.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.848868,D:\,D:\OOPS Syllabus (R 23) - Copy.docx,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.854713,D:\,D:\DE SYLLABUS.docx,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.854713,D:\,D:\ISC SYLLABUS.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.854713,D:\,D:\elevoc_dnn_kernel.log,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.854713,D:\,D:\User stories supreeti.docx,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.854713,D:\,D:\Statement_of_Purpose_All supreeti.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.854713,D:\,D:\System Volume Information\WPSettings.dat,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.854713,D:\,D:\System Volume Information\IndexerVolumeGuid,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.863154,D:\,D:\Music\.thumbnails\.database_uuid,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.864916,D:\,D:\Music\.thumbnails\.nomedia,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.864916,D:\,D:\Pictures\.thumbnails\.database_uuid,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.864916,D:\,D:\Pictures\.thumbnails\.nomedia,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.864916,D:\,D:\Movies\.thumbnails\.database_uuid,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.864916,D:\,D:\Movies\.thumbnails\.nomedia,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.864916,D:\,D:\adarsh\ZENUS GROUP RESUME(KBB).pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.864916,D:\,D:\adarsh\Technical resume-1.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:34:54.864916,D:\,D:\Android\data\.nomedia,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.251590,D:\,D:\DAA QUESTION BANK.docx,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.255045,D:\,D:\Soft Computing.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.259065,D:\,D:\Introduction to Soft Computing.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.266945,D:\,D:\EME.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.272621,D:\,D:\EME QUESTION BANK 1st sem.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.338342,D:\,D:\Durga Sir Python.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.342357,D:\,D:\DE LECTURE - 05.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.350592,D:\,D:\DE LECTURE - 07.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.356205,D:\,D:\DE LECTURE - 06.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.360227,D:\,D:\DE Assignment 01.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.370172,D:\,D:\DE LECTURE - 02.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.379448,D:\,D:\DE LECTURE - 01.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.389992,D:\,D:\DE LECTURE - 13.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.389992,D:\,D:\SYLLABUS(TOC).docx,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.389992,D:\,D:\ESE SYLLABUS.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.389992,D:\,D:\0. OS THEORY SYLLABUS(2024)-5 units.docx,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.389992,D:\,D:\FPP SYLLABUS - 4TH SEM - 2023-27.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.401660,D:\,D:\OOPS Syllabus (R 23) - Copy.docx,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.402603,D:\,D:\DE SYLLABUS.docx,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.402603,D:\,D:\ISC SYLLABUS.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.402603,D:\,D:\elevoc_dnn_kernel.log,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.407456,D:\,D:\User stories supreeti.docx,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.411474,D:\,D:\Statement_of_Purpose_All supreeti.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.413484,D:\,D:\System Volume Information\WPSettings.dat,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.419009,D:\,D:\System Volume Information\IndexerVolumeGuid,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.419757,D:\,D:\Music\.thumbnails\.database_uuid,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.421768,D:\,D:\Music\.thumbnails\.nomedia,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.423778,D:\,D:\Pictures\.thumbnails\.database_uuid,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.426329,D:\,D:\Pictures\.thumbnails\.nomedia,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.426329,D:\,D:\Movies\.thumbnails\.database_uuid,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.428340,D:\,D:\Movies\.thumbnails\.nomedia,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.430351,D:\,D:\adarsh\ZENUS GROUP RESUME(KBB).pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.434388,D:\,D:\adarsh\Technical resume-1.pdf,ANOMALY,File content does not match approved device data
+2026-10-06T22:36:04.435865,D:\,D:\Android\data\.nomedia,ANOMALY,File content does not match approved device data
