@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
 import cyberSecurityImage from "./assets/cyber_security_emoji.svg";
 import first_background from "./assets/first_background.png";
+import { Link } from "react-router-dom";
+import About from "./about";
+import Contact from "./contact.jsx";
 const App = () => {
     const text = "Detect Insider Threats";
 const [displayText, setDisplayText] = useState("");
+//for the admin pop-up
+const [showAdminMenu, setShowAdminMenu] = useState(false);
 
 useEffect(() => {
   let index = 0;
@@ -20,11 +25,12 @@ useEffect(() => {
   return () => clearInterval(typingInterval);
 }, []);
   return (
+    
     <div className="min-h-screen overflow-x-hidden bg-[#05030d] text-white">
+      
 
       {/* ================= NAVBAR ================= */}
-     <nav className="sticky top-0 z-50 border-b border-white/10 bg-[#05030d]/80 px-6 py-5 backdrop-blur-xl md:px-12 lg:px-20">
-  <div className="mx-auto flex max-w-7xl items-center gap-8">
+    <nav className="fixed top-0 left-0 w-full z-50 border-b border-white/10 bg-[#05030d]/40 px-6 py-5 backdrop-blur-xl md:px-12 lg:px-20">  <div className="mx-auto flex max-w-7xl items-center gap-8">
 
     {/* Logo */}
     <a
@@ -36,7 +42,7 @@ useEffect(() => {
 
     {/* Main Navigation */}
     <div className="hidden items-center gap-8 text-xs text-gray-400 md:flex">
-      <a href="#blog" className="transition hover:text-white">
+      <a href="#home" className="transition hover:text-white">
         Home
       </a>
 
@@ -49,51 +55,303 @@ useEffect(() => {
       </a>
 
       <a href="#resources" className="transition hover:text-white">
-        Resources
+       privacy and security
       </a>
     </div>
 
     {/* Admin Dashboard */}
-    <div className="hidden md:flex items-center ml-auto">
+  <div className="relative ml-auto hidden md:flex items-center">
+
+  {/* ADMIN DASHBOARD BUTTON */}
+  <button
+    onClick={() => setShowAdminMenu(!showAdminMenu)}
+    className="group relative flex items-center gap-2 rounded-lg border border-blue-500/30 bg-blue-500/10 px-4 py-2 text-[11px] font-semibold tracking-wider text-blue-300 transition-all duration-300 hover:border-blue-400/60 hover:bg-blue-500/20 hover:text-blue-200 hover:shadow-[0_0_25px_rgba(59,130,246,0.25)]"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-4 w-4 text-blue-400 transition-transform duration-300 group-hover:scale-110"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth="1.8"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7l7-4z"
+      />
+
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M9.5 12l1.7 1.7 3.5-3.5"
+      />
+    </svg>
+
+    ADMIN DASHBOARD
+
+    {/* Dropdown Arrow */}
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className={`h-3 w-3 transition-transform duration-300 ${
+        showAdminMenu ? "rotate-180" : ""
+      }`}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth="2"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M19 9l-7 7-7-7"
+      />
+    </svg>
+  </button>
+
+
+  {/* ADMIN DROPDOWN */}
+  {showAdminMenu && (
+    <div
+      className="
+        absolute
+        right-0
+        top-full
+        z-50
+        mt-3
+        w-64
+        overflow-hidden
+        rounded-2xl
+        border
+        border-blue-500/20
+        bg-[#050b16]/80
+        shadow-[0_0_35px_rgba(37,99,235,0.20)]
+        backdrop-blur-2xl
+      "
+    >
+
+      {/* ADMIN PROFILE */}
+      <div className="flex items-center gap-3 border-b border-white/10 px-5 py-4">
+
+        {/* MAN ICON */}
+        <div className="flex h-11 w-11 items-center justify-center rounded-full border border-blue-400/30 bg-blue-500/10">
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 text-blue-400"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth="1.6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15.75 6.75a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+            />
+
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M4.5 20.25a7.5 7.5 0 0115 0"
+            />
+          </svg>
+
+        </div>
+
+        {/* ADMIN DETAILS */}
+        <div>
+          <p className="text-sm font-semibold text-white">
+            Admin
+          </p>
+
+          <p className="text-[11px] text-gray-500">
+            Security Administrator
+          </p>
+        </div>
+
+      </div>
+
+
+      {/* PROFILE / ADMIN DASHBOARD */}
       <a
         href="/admin-dashboard"
-        className="group relative flex items-center gap-2 rounded-lg border border-blue-500/30 bg-blue-500/10 px-4 py-2 text-[11px] font-semibold tracking-wider text-blue-300 transition-all duration-300 hover:border-blue-400/60 hover:bg-blue-500/20 hover:text-blue-200 hover:shadow-[0_0_25px_rgba(59,130,246,0.25)]"
+        className="flex items-center gap-3 px-5 py-3 text-sm text-gray-300 transition-all duration-300 hover:bg-blue-500/10 hover:text-blue-300"
       >
+
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-4 w-4 text-blue-400 transition-transform duration-300 group-hover:scale-110"
+          className="h-5 w-5 text-blue-400"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
-          strokeWidth="1.8"
+          strokeWidth="1.7"
         >
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
-            d="M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7l7-4z"
-          />
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M9.5 12l1.7 1.7 3.5-3.5"
+            d="M3 13h8V3H3v10zM13 21h8V11h-8v10zM13 3h8v6h-8V3zM3 17h8v4H3v-4z"
           />
         </svg>
 
-        ADMIN DASHBOARD
-
+       Total Users
 
       </a>
+
+
+<a
+  href="/normal-users"
+  className="flex items-center gap-3 px-5 py-3 text-sm text-gray-300 transition-all duration-300 hover:bg-green-500/10 hover:text-green-300"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="h-5 w-5 text-green-400"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth="1.7"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M9 12l2 2 4-4"
+    />
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7l7-4z"
+    />
+  </svg>
+
+  Normal Users
+</a>
+
+
+
+<a
+  href="/flagged-users"
+  className="flex items-center gap-3 px-5 py-3 text-sm text-gray-300 transition-all duration-300 hover:bg-red-500/10 hover:text-red-300"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="h-5 w-5 text-red-400"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth="1.7"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M12 9v4"
+    />
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M12 17h.01"
+    />
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M10.3 3.5L2.7 17a2 2 0 001.75 3h15.1a2 2 0 001.75-3L13.7 3.5a2 2 0 00-3.4 0z"
+    />
+  </svg>
+
+  Flagged Users
+</a>
+<a
+  href="/settings"
+  className="flex items-center gap-3 px-5 py-3 text-sm text-gray-300 transition-all duration-300 hover:bg-cyan-500/10 hover:text-cyan-300"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="h-5 w-5 text-cyan-400"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth="1.7"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M10.3 3.5h3.4l.6 2.1a7.7 7.7 0 012 1.2l2.1-.6 1.7 3-1.6 1.5a7.4 7.4 0 010 2.4l1.6 1.5-1.7 3-2.1-.6a7.7 7.7 0 01-2 1.2l-.6 2.1h-3.4l-.6-2.1a7.7 7.7 0 01-2-1.2l-2.1.6-1.7-3 1.6-1.5a7.4 7.4 0 010-2.4L3.9 9.2l1.7-3 2.1.6a7.7 7.7 0 012-1.2l.6-2.1z"
+    />
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M12 15.2a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4z"
+    />
+  </svg>
+
+  Settings
+</a>
+
+      {/* LOGOUT */}
+      <div className="border-t border-white/10 p-2">
+
+        <button
+          onClick={() => {
+            localStorage.removeItem("token");
+            window.location.href = "/login";
+          }}
+          className="
+            flex
+            w-full
+            items-center
+            gap-3
+            rounded-xl
+            px-4
+            py-3
+            text-sm
+            text-red-400
+            transition-all
+            duration-300
+            hover:bg-red-500/10
+            hover:text-red-300
+          "
+        >
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth="1.7"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6A2.25 2.25 0 005.25 5.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15"
+            />
+
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M18 12H9m0 0l3-3m-3 3l3 3"
+            />
+          </svg>
+
+          Logout
+
+        </button>
+
+      </div>
+
     </div>
+  )}
+
+</div>
 
     {/* Right Navigation */}
     <div className="hidden items-center gap-6 text-xs text-gray-400 md:flex">
-      <a href="#about" className="transition hover:text-white">
-        About
-      </a>
+      <Link to="/about" className="transition hover:text-white">
+  About
+</Link>
 
-      <a href="#contact" className="transition hover:text-white">
+      <Link to="/contact" className="transition hover:text-white">
         Contact us
-      </a>
+      </Link>
     </div>
 
     {/* Mobile */}
@@ -106,6 +364,7 @@ useEffect(() => {
 
       {/* ================= HERO ================= */}
 <section
+id="home"
   className="
     relative
     min-h-[680px]
@@ -373,24 +632,23 @@ Monitor user activity,
 
             {[
               [
-                "🔐",
-                "Network Security",
-                "Protect your network infrastructure against unauthorized access and attacks.",
+                "💻",
+                "System -no",
+              
               ],
               [
-                "☁️",
-                "Cloud Security",
-                "Secure cloud applications and infrastructure while maintaining performance.",
+                "💻",
+                
+                   "System -no",
               ],
               [
-                "🧠",
-                "Threat Intelligence",
-                "Identify potential cyber threats using real-time intelligence and analytics.",
+                "💻",
+               
+           "System -no",
               ],
               [
-                "👤",
-                "Identity Security",
-                "Protect user identities and control access to critical resources.",
+                "💻",
+                 "System -no",
               ],
             ].map(([icon, title, description]) => (
 
