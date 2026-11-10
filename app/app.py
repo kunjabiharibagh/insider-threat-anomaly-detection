@@ -216,7 +216,7 @@ def usb_monitor_fragment():
 
 
 usb_monitor_fragment()
-from src.file_monitor import start_file_monitor, stop_file_monitor
+from src.file_watcher import start_file_monitor, stop_file_monitor, get_events, clear_events
 
 st.divider()
 st.header("📁 File Access Monitor")
@@ -224,8 +224,6 @@ st.write("Watches a folder in real time for file creation, modification, deletio
 
 if "file_monitor_observer" not in st.session_state:
     st.session_state.file_monitor_observer = None
-if "file_monitor_events" not in st.session_state:
-    st.session_state.file_monitor_events = []
 if "file_monitor_path" not in st.session_state:
     st.session_state.file_monitor_path = os.path.join(os.getcwd(), "test_files")
 
@@ -239,11 +237,9 @@ with col1:
         elif not os.path.isdir(watch_path):
             st.error(f"Folder not found: {watch_path}")
         else:
+            clear_events()
             st.session_state.file_monitor_path = watch_path
-            st.session_state.file_monitor_events.clear()
-            st.session_state.file_monitor_observer = start_file_monitor(
-                watch_path, st.session_state.file_monitor_events
-            )
+            st.session_state.file_monitor_observer = start_file_monitor(watch_path)
 
 with col2:
     if st.button("⏹️ Stop File Monitoring"):
@@ -259,7 +255,7 @@ def file_monitor_fragment():
     else:
         st.write("**Status:** 🔴 Not monitoring")
 
-    events = st.session_state.file_monitor_events
+    events = get_events()
     if events:
         st.dataframe(pd.DataFrame(events[::-1]), use_container_width=True)
     else:

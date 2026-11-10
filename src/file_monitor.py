@@ -1,12 +1,15 @@
 import os
-import time
-import hashlib
 import json
+import hashlib
+import threading
 from datetime import datetime
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
 APPROVED_FILE_HASHES_PATH = "data/approved_file_hashes.json"
+
+_events = []
+_lock = threading.Lock()
 
 
 def format_dt(dt=None):
@@ -34,31 +37,38 @@ def hash_file(filepath):
 
 
 class FileAccessHandler(FileSystemEventHandler):
-    def __init__(self, event_log):
-        self.event_log = event_log
+    def __init__(self):
         self.approved_hashes = load_approved_file_hashes()
 
     def _record(self, event_type, filepath):
-        if os.path.isdir(filepath):
-            return
-
-        file_hash = hash_file(filepath) if event_type != "DELETED" else None
-        status = "N/A"
-        if event_type != "DELETED":
-            status = "APPROVED" if file_hash in self.approved_hashes else "ANOMALY"
-
         try:
-            size_kb = round(os.path.getsize(filepath) / 1024, 2) if event_type != "DELETED" else None
-        except OSError:
             size_kb = None
+            status = "N/A"
+            if event_type != "DELETED":
+                file_hash = hash_file(filepath)
+                if file_hash is None:
+                    status = "UNKNOWN"
+                elif file_hash in self.approved_hashes:
+                    status = "APPROVED"
+                else:
+                    status = "ANOMALY"
+                try:
+                    size_kb = round(os.path.getsize(filepath) / 1024, 2)
+                except OSError:
+                    pass
 
-        self.event_log.append({
-            "time": format_dt(),
-            "event": event_type,
-            "file": filepath,
-            "size_kb": size_kb,
-            "status": status
-        })
+            row = {
+                "time": format_dt(),
+                "event": event_type,
+                "file": filepath,
+                "size_kb": size_kb,
+                "status": status,
+            }
+            with _lock:
+                _events.append(row)
+            print(f"[FILE MONITOR] {row}")
+        except Exception as e:
+            print(f"[FILE MONITOR ERROR] {e}")
 
     def on_created(self, event):
         if not event.is_directory:
@@ -77,11 +87,9 @@ class FileAccessHandler(FileSystemEventHandler):
             self._record("RENAMED/MOVED", event.dest_path)
 
 
-def start_file_monitor(watch_path, event_log):
-    """Starts watching a folder in the background. Returns the observer so it can be stopped later."""
-    handler = FileAccessHandler(event_log)
+def start_file_monitor(watch_path):
     observer = Observer()
-    observer.schedule(handler, watch_path, recursive=True)
+    observer.schedule(FileAccessHandler(), watch_path, recursive=True)
     observer.start()
     return observer
 
@@ -90,3 +98,13 @@ def stop_file_monitor(observer):
     if observer:
         observer.stop()
         observer.join()
+
+
+def get_events():
+    with _lock:
+        return list(_events)
+
+
+def clear_events():
+    with _lock:
+        _events.clear()
