@@ -227,30 +227,43 @@ if "file_monitor_observer" not in st.session_state:
 if "file_monitor_events" not in st.session_state:
     st.session_state.file_monitor_events = []
 if "file_monitor_path" not in st.session_state:
-    st.session_state.file_monitor_path = os.path.expanduser("~\\Desktop")
+    st.session_state.file_monitor_path = os.path.join(os.getcwd(), "test_files")
 
 watch_path = st.text_input("Folder to monitor", value=st.session_state.file_monitor_path)
 
 col1, col2 = st.columns(2)
 with col1:
     if st.button("▶️ Start File Monitoring"):
-        if st.session_state.file_monitor_observer is None:
+        if st.session_state.file_monitor_observer is not None:
+            st.info("Already monitoring.")
+        elif not os.path.isdir(watch_path):
+            st.error(f"Folder not found: {watch_path}")
+        else:
             st.session_state.file_monitor_path = watch_path
-            st.session_state.file_monitor_observer = start_file_monitor(watch_path, st.session_state.file_monitor_events)
-            st.success(f"Started monitoring: {watch_path}")
+            st.session_state.file_monitor_events.clear()
+            st.session_state.file_monitor_observer = start_file_monitor(
+                watch_path, st.session_state.file_monitor_events
+            )
 
 with col2:
     if st.button("⏹️ Stop File Monitoring"):
         if st.session_state.file_monitor_observer is not None:
             stop_file_monitor(st.session_state.file_monitor_observer)
             st.session_state.file_monitor_observer = None
-            st.info("File monitoring stopped.")
 
-st.write(f"**Status:** {'🟢 Monitoring: ' + st.session_state.file_monitor_path if st.session_state.file_monitor_observer else '🔴 Not monitoring'}")
 
-if st.session_state.file_monitor_events:
-    import pandas as pd
-    events_df = pd.DataFrame(st.session_state.file_monitor_events[::-1])
-    st.dataframe(events_df, use_container_width=True)
-else:
-    st.info("No file events recorded yet.")
+@st.fragment(run_every="2s")
+def file_monitor_fragment():
+    if st.session_state.file_monitor_observer:
+        st.write(f"**Status:** 🟢 Monitoring: {st.session_state.file_monitor_path}")
+    else:
+        st.write("**Status:** 🔴 Not monitoring")
+
+    events = st.session_state.file_monitor_events
+    if events:
+        st.dataframe(pd.DataFrame(events[::-1]), use_container_width=True)
+    else:
+        st.info("No file events recorded yet.")
+
+
+file_monitor_fragment()
