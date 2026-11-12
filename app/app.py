@@ -3,12 +3,26 @@ import pandas as pd
 import os
 import sys
 
-st.set_page_config(page_title="Insider Threat Detection - Log Upload", layout="wide")
+st.set_page_config(page_title="Insider Threat Detection", layout="wide")
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+import matplotlib.pyplot as plt
+from src.eda_summary import (
+    load_processed_features, compute_summary_stats,
+    get_trend_comparison_data, get_capture_rate_curve
+)
+from src.reason_generation import (
+    load_flagged_data, generate_reasons_for_flagged_users, add_severity
+)
+from src.model_validation import compute_validation_metrics, compute_topk_table
+from src.usb_monitor import (
+    get_removable_drives, load_approved_hashes, scan_drive_detailed, format_dt
+)
+from src.file_watcher import start_file_monitor, stop_file_monitor, get_events, clear_events
 
 RAW_DATA_PATH = "data/raw/r4.2"
 os.makedirs(RAW_DATA_PATH, exist_ok=True)
-
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 REQUIRED_COLUMNS = {
     "logon": ["id", "date", "user", "pc", "activity"],
@@ -24,6 +38,7 @@ MUST_HAVE_DATA = {
     "email": ["id", "date", "user", "pc"]
 }
 
+# ========== TITLE + PIPELINE ==========
 st.title("🔒 Insider Threat Detection — Raw Activity Log Upload")
 st.write("Upload a CERT-format activity log file (logon, device, file, or email) to begin analysis.")
 
@@ -39,8 +54,10 @@ with st.expander("ℹ️ How This System Works (Pipeline Overview)"):
     6. **Reason Generation** — For each flagged day, the system explains which features contributed most
     """)
 
+# ========== UPLOAD ==========
 log_type = st.selectbox("Select log type", options=list(REQUIRED_COLUMNS.keys()))
 uploaded_file = st.file_uploader("Upload CSV log file", type=["csv"])
+
 
 def validate_log(df, log_type):
     errors = []
@@ -62,6 +79,7 @@ def validate_log(df, log_type):
             errors.append(f"Required column '{col}' is completely empty.")
 
     return errors
+
 
 if uploaded_file is not None:
     try:
@@ -87,10 +105,6 @@ else:
     st.info("Please select a log type and upload a CSV file to continue.")
 
 # ========== EDA DASHBOARD ==========
-from src.eda_summary import load_processed_features, compute_summary_stats, get_trend_comparison_data, get_capture_rate_curve
-from src.reason_generation import load_flagged_data, generate_reasons_for_flagged_users
-import matplotlib.pyplot as plt
-
 st.divider()
 st.header("📊 Exploratory Data Analysis Dashboard")
 
@@ -122,35 +136,81 @@ try:
 except FileNotFoundError:
     st.warning("Processed features file not found. Run the feature engineering and model pipeline first.")
 
-# ========== FLAGGED USERS ==========
+# ========== FLAGGED USERS (severity + download) ==========
 st.divider()
 st.header("🚩 Flagged Users — Reasons")
 
 try:
     flagged_df = load_flagged_data()
-    flagged_with_reasons = generate_reasons_for_flagged_users(flagged_df)
+    flagged_with_reasons = add_severity(generate_reasons_for_flagged_users(flagged_df))
 
-    st.write(f"**Total flagged user-days:** {len(flagged_with_reasons)}")
+    counts = flagged_with_reasons["severity"].value_counts()
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("Total flagged user-days", f"{len(flagged_with_reasons):,}")
+    c2.metric("🔴 High", int(counts.get("🔴 High", 0)))
+    c3.metric("🟠 Medium", int(counts.get("🟠 Medium", 0)))
+    c4.metric("🟡 Low", int(counts.get("🟡 Low", 0)))
 
     search_user = st.text_input("Search by username (optional)")
     display_df = flagged_with_reasons
     if search_user:
-        display_df = display_df[display_df['user'].str.contains(search_user, case=False, na=False)]
+        display_df = display_df[display_df["user"].str.contains(search_user, case=False, na=False)]
 
-    st.dataframe(
-        display_df.sort_values('iso_forest_score', ascending=False).head(50),
-        use_container_width=True
+    display_df = display_df.sort_values("iso_forest_score", ascending=False)
+    cols = ["severity"] + [c for c in display_df.columns if c != "severity"]
+
+    st.dataframe(display_df[cols].head(50), use_container_width=True)
+
+    st.download_button(
+        "⬇️ Download flagged report (CSV, all matching rows)",
+        data=display_df[cols].to_csv(index=False).encode("utf-8"),
+        file_name="flagged_users_report.csv",
+        mime="text/csv",
+    )
+
+    st.caption(
+        "Severity is relative to the flagged set: High = top 20% of anomaly scores, "
+        "Medium = next 30%, Low = the rest. The is_insider_day column is ground truth "
+        "from the CERT dataset, used only for evaluation."
     )
 
 except FileNotFoundError:
     st.warning("Run the model pipeline first to generate flagged users with reasons.")
 
-# ========== USB DEVICE MONITOR (single unified section) ==========
-from src.usb_monitor import (
-    get_removable_drives, load_approved_hashes, scan_drive_detailed,
-    format_dt
-)
+# ========== MODEL VALIDATION ==========
+st.divider()
+st.header("✅ Model Validation (False Positive Analysis)")
 
+try:
+    val_df = load_processed_features()
+    m = compute_validation_metrics(val_df)
+
+    v1, v2, v3, v4 = st.columns(4)
+    v1.metric("False Positive Rate", f"{m['fpr'] * 100:.2f}%")
+    v2.metric("Precision", f"{m['precision'] * 100:.1f}%")
+    v3.metric("Recall", f"{m['recall'] * 100:.1f}%")
+    v4.metric("Flagged days", f"{m['flagged']:,}")
+
+    st.subheader("Confusion Matrix")
+    cm = pd.DataFrame(
+        [[m["tn"], m["fp"]], [m["fn"], m["tp"]]],
+        index=["Actually normal", "Actually insider"],
+        columns=["Not flagged", "Flagged"],
+    )
+    st.dataframe(cm)
+
+    st.subheader("Precision and Recall When Reviewing the Top-Ranked Days")
+    st.dataframe(compute_topk_table(val_df), hide_index=True, use_container_width=True)
+
+    st.caption(
+        "Insider days are only about 0.4% of all days, so even a low false-positive rate "
+        "means most flags are not insiders. The system works best as a ranked review list "
+        "for an analyst, not an automatic accusation."
+    )
+except FileNotFoundError:
+    st.warning("Run the model pipeline first to generate validation data.")
+
+# ========== USB DEVICE MONITOR ==========
 st.divider()
 st.header("🔌 USB Device Monitor")
 st.write("Fully automatic — just insert or eject a USB drive. No action needed.")
@@ -216,8 +276,8 @@ def usb_monitor_fragment():
 
 
 usb_monitor_fragment()
-from src.file_watcher import start_file_monitor, stop_file_monitor, get_events, clear_events
 
+# ========== FILE ACCESS MONITOR ==========
 st.divider()
 st.header("📁 File Access Monitor")
 st.write("Watches a folder in real time for file creation, modification, deletion, and renaming.")

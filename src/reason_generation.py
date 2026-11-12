@@ -1,9 +1,11 @@
 import pandas as pd
 import streamlit as st
 
+
 @st.cache_data
 def load_flagged_data(path="data/processed/user_daily_features_with_flags.csv"):
     return pd.read_csv(path)
+
 
 # Human-readable labels for each feature
 FEATURE_LABELS = {
@@ -19,14 +21,9 @@ FEATURE_LABELS = {
 ZSCORE_FEATURES = list(FEATURE_LABELS.keys())
 
 
-def load_flagged_data(path="data/processed/user_daily_features_with_flags.csv"):
-    return pd.read_csv(path)
-
-
 def identify_top_contributing_features(row, top_n=2):
     """ITDS-34: Identify which feature(s) contributed most to a flag."""
     feature_scores = {feat: row[feat] for feat in ZSCORE_FEATURES if feat in row}
-    # Sort by absolute z-score deviation, descending
     sorted_features = sorted(feature_scores.items(), key=lambda x: abs(x[1]), reverse=True)
     return sorted_features[:top_n]
 
@@ -74,8 +71,25 @@ def generate_reasons_for_flagged_users(df, flag_col='iso_forest_flag'):
     return flagged[['user', 'day', flag_col, 'iso_forest_score', 'is_insider_day', 'reason']]
 
 
+def add_severity(df):
+    """Label each flagged row High / Medium / Low by its anomaly score."""
+    df = df.copy()
+    high = df["iso_forest_score"].quantile(0.80)
+    medium = df["iso_forest_score"].quantile(0.50)
+
+    def label(score):
+        if score >= high:
+            return "🔴 High"
+        if score >= medium:
+            return "🟠 Medium"
+        return "🟡 Low"
+
+    df["severity"] = df["iso_forest_score"].apply(label)
+    return df
+
+
 if __name__ == "__main__":
-    df = load_flagged_data()
+    df = pd.read_csv("data/processed/user_daily_features_with_flags.csv")
     flagged_with_reasons = generate_reasons_for_flagged_users(df)
 
     print(f"Total flagged users: {len(flagged_with_reasons)}")
@@ -84,5 +98,3 @@ if __name__ == "__main__":
 
     flagged_with_reasons.to_csv("data/processed/flagged_users_with_reasons.csv", index=False)
     print("\nSaved to data/processed/flagged_users_with_reasons.csv")
-    import streamlit as st
-
